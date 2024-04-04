@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\api\BlogAc;
 use App\Http\Controllers\api\DestinationAc;
+use App\Http\Controllers\api\EnquiryAc;
 use App\Http\Controllers\api\GalleryAc;
 use App\Http\Controllers\api\SeoAc;
 use App\Http\Controllers\api\ServiceAc;
@@ -54,6 +55,7 @@ Route::get('/testimonials', [TestimonialAc::class, 'index']);
 
 Route::get('/seo/{page_name}', [SeoAc::class, 'index']);
 
+Route::post('inquiry/submit-inquiry', [EnquiryAc::class, 'index']);
 
 /* STUDENT ROUTES BEFORE LOGIN */
 
