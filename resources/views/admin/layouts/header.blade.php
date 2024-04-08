@@ -288,6 +288,21 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-more" role="button">
                   <i data-feather="file-text"></i>
+                  <span data-key="t-extra-pages">Dynamic Page</span>
+                  <div class="arrow-down"></div>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="topnav-more">
+                  <div class="dropdown">
+                    <a class="dropdown-item dropdown-toggle arrow-none" href="{{ aurl('dynamic-pages') }}"
+                      id="topnav-auth" role="button">
+                      <span data-key="t-authentication">Dynamic Page</span>
+                    </a>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-more" role="button">
+                  <i data-feather="file-text"></i>
                   <span data-key="t-extra-pages">University</span>
                   <div class="arrow-down"></div>
                 </a>

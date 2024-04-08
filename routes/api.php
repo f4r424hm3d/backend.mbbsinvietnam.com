@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\api\BlogAc;
 use App\Http\Controllers\api\DestinationAc;
+use App\Http\Controllers\api\DynamicPageAc;
 use App\Http\Controllers\api\EnquiryAc;
 use App\Http\Controllers\api\GalleryAc;
 use App\Http\Controllers\api\SeoAc;
@@ -41,6 +42,12 @@ Route::get('/destination/{slug}', [DestinationAc::class, 'detail']);
 Route::get('/destination-content/{page_id}', [DestinationAc::class, 'desContent']);
 Route::get('/destination-gallery/{destination_id}', [DestinationAc::class, 'gallery']);
 Route::get('/destination-faqs/{page_id}', [DestinationAc::class, 'faqs']);
+
+Route::get('/dynamic-pages', [DynamicPageAc::class, 'index']);
+Route::get('/dynamic-page/{slug}', [DynamicPageAc::class, 'detail']);
+Route::get('/dynamic-page-content/{page_id}', [DynamicPageAc::class, 'desContent']);
+Route::get('/dynamic-page-gallery/{page_id}', [DynamicPageAc::class, 'gallery']);
+Route::get('/dynamic-page-faqs/{page_id}', [DynamicPageAc::class, 'faqs']);
 
 
 Route::get('/universities', [UniversityAc::class, 'index']);

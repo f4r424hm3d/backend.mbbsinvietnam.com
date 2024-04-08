@@ -20,7 +20,12 @@ use App\Http\Controllers\admin\UserC;
 use App\Http\Controllers\CommonController;
 use App\Http\Controllers\admin\BlogC;
 use App\Http\Controllers\admin\BlogCategoryC;
+use App\Http\Controllers\admin\DynamicPageC;
+use App\Http\Controllers\admin\DynamicPageContentC;
+use App\Http\Controllers\admin\DynamicPageFaqC;
+use App\Http\Controllers\admin\DynamicPageGalleryC;
 use App\Http\Controllers\admin\DynamicPageSeoC;
+use App\Http\Controllers\admin\DynamicPageTabC;
 use App\Http\Controllers\admin\GalleryC;
 use App\Http\Controllers\admin\InstituteTypeC;
 use App\Http\Controllers\admin\ServiceC;
@@ -92,32 +97,6 @@ Route::get('/f/migrate', function () {
   return true;
 });
 
-// Route::get('/', [HomeFc::class, 'index']);
-// Route::get('/about-us', [AboutFc::class, 'index']);
-// Route::get('/faq', [FaqFc::class, 'index']);
-// Route::get('/gallery', [GalleryFc::class, 'index']);
-// Route::get('/contact-us', [ContactFc::class, 'index']);
-// Route::get('/thank-you', [ContactFc::class, 'thankYou']);
-
-// Route::get('/services', [ServiceFc::class, 'index']);
-// $services = Service::all();
-// foreach ($services as $row) {
-//   Route::get('/' . $row->service_slug, [ServiceFc::class, 'Detail']);
-// }
-
-// //Route::get('/blog', [BlogFc::class, 'index']);
-
-// Route::get('/appointment', [AppointmentFc::class, 'index']);
-
-// Route::get('/news', [BlogFc::class, 'index']);
-// Route::get('/news/{slug}', [BlogFc::class, 'blogByCategory']);
-// $blogs = Blog::all();
-// foreach ($blogs as $row) {
-//   Route::get('/' . $row->slug, [BlogFc::class, 'blogdetail']);
-// }
-
-// Route::post('inquiry/contact-us', [InquiryController::class, 'submitContactUs'])->name('contactus');
-// Route::post('inquiry/appointment', [InquiryController::class, 'appointment']);
 
 /* ADMIN ROUTES BEFORE LOGIN */
 Route::middleware(['adminLoggedOut'])->group(function () {
@@ -170,6 +149,42 @@ Route::middleware(['adminLoggedIn'])->group(function () {
       Route::get('/delete/{id}/', [DestinationTabC::class, 'delete']);
       Route::get('/update/{id}/', [DestinationTabC::class, 'index']);
       Route::post('/update/{id}/', [DestinationTabC::class, 'update']);
+    });
+
+    Route::prefix('/dynamic-pages')->group(function () {
+      Route::get('', [DynamicPageC::class, 'index']);
+      Route::post('/store/', [DynamicPageC::class, 'store']);
+      Route::get('/delete/{id}/', [DynamicPageC::class, 'delete']);
+      Route::get('/update/{id}/', [DynamicPageC::class, 'index']);
+      Route::post('/update/{id}/', [DynamicPageC::class, 'update']);
+    });
+    Route::prefix('/dynamic-page-content/')->group(function () {
+      Route::get('/delete/{id}/', [DynamicPageContentC::class, 'delete']);
+      Route::post('store/', [DynamicPageContentC::class, 'store']);
+      Route::post('update/{id}/', [DynamicPageContentC::class, 'update']);
+      Route::get('{page_id}/', [DynamicPageContentC::class, 'index']);
+      Route::get('{page_id}/update/{id}/', [DynamicPageContentC::class, 'index']);
+    });
+    Route::prefix('/dynamic-page-gallery/')->group(function () {
+      Route::get('/delete/{id}/', [DynamicPageGalleryC::class, 'delete']);
+      Route::get('{destination_id}/', [DynamicPageGalleryC::class, 'index']);
+      Route::post('store/', [DynamicPageGalleryC::class, 'store']);
+      Route::get('{destination_id}/update/{id}/', [DynamicPageGalleryC::class, 'index']);
+      Route::post('update/{id}/', [DynamicPageGalleryC::class, 'update']);
+    });
+    Route::prefix('/dynamic-page-faq/')->group(function () {
+      Route::get('/delete/{id}/', [DynamicPageFaqC::class, 'delete']);
+      Route::get('{page_id}/', [DynamicPageFaqC::class, 'index']);
+      Route::post('store/', [DynamicPageFaqC::class, 'store']);
+      Route::get('{page_id}/update/{id}/', [DynamicPageFaqC::class, 'index']);
+      Route::post('update/{id}/', [DynamicPageFaqC::class, 'update']);
+    });
+    Route::prefix('/dynamic-page-tabs')->group(function () {
+      Route::get('', [DynamicPageTabC::class, 'index']);
+      Route::post('/store/', [DynamicPageTabC::class, 'store']);
+      Route::get('/delete/{id}/', [DynamicPageTabC::class, 'delete']);
+      Route::get('/update/{id}/', [DynamicPageTabC::class, 'index']);
+      Route::post('/update/{id}/', [DynamicPageTabC::class, 'update']);
     });
 
     Route::prefix('/gallery')->group(function () {
